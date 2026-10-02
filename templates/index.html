@@ -1,0 +1,92 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>SkillGrid://</title>
+<link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🟩</text></svg>">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:ital,wght@0,100..800;1,100..800&family=Space+Grotesk:wght@300..700&display=swap">
+<script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/vis-network/9.1.9/vis-network.min.js"></script>
+<link rel="stylesheet" href="/static/css/style.css">
+</head>
+<body>
+
+<div id="boot-scan"><div id="boot-text"></div></div>
+
+<div id="app" class="hidden">
+
+  <!-- top bar -->
+  <header id="topbar">
+    <div class="brand">
+      <span class="brand-glyph">▓</span>
+      <span class="brand-text">SKILL<span class="accent">GRID</span></span>
+      <span class="brand-caret">_</span>
+    </div>
+    <div id="root-path" class="root-path"></div>
+    <div class="topbar-right">
+      <span id="skill-count" class="pill"></span>
+      <button id="view-browse" class="view-btn active" data-view="browse">[ BROWSE ]</button>
+      <button id="view-graph" class="view-btn" data-view="graph">[ GRAPH ]</button>
+      <input id="search" type="text" placeholder="grep skills..." autocomplete="off">
+    </div>
+  </header>
+
+  <div id="layout">
+
+    <!-- sidebar tree -->
+    <nav id="sidebar">
+      <div class="sidebar-label">/ tree</div>
+      <div id="tree-root" class="tree"></div>
+    </nav>
+
+    <!-- main browse view -->
+    <main id="view-browse-panel" class="view-panel active">
+      <div id="breadcrumb" class="breadcrumb"></div>
+      <div id="card-scroll" class="card-scroll"></div>
+    </main>
+
+    <!-- graph view -->
+    <main id="view-graph-panel" class="view-panel">
+      <div id="graph-canvas"></div>
+      <div id="graph-hint" class="graph-hint">drag · scroll to zoom · click a node to open</div>
+    </main>
+
+  </div>
+</div>
+
+<!-- editor modal -->
+<div id="editor-overlay" class="overlay hidden">
+  <div id="editor-modal">
+    <div class="editor-header">
+      <span id="editor-path" class="editor-path"></span>
+      <div class="editor-actions">
+        <button id="editor-toggle-edit" class="btn">[ EDIT ]</button>
+        <button id="editor-save" class="btn btn-ok hidden">[ SAVE ]</button>
+        <button id="editor-delete" class="btn btn-danger">[ DELETE ]</button>
+        <button id="editor-close" class="btn">[ X ]</button>
+      </div>
+    </div>
+    <div class="editor-body">
+      <div id="editor-preview" class="editor-pane preview-pane"></div>
+      <textarea id="editor-textarea" class="editor-pane edit-pane hidden" spellcheck="false"></textarea>
+    </div>
+  </div>
+</div>
+
+<!-- confirm delete modal -->
+<div id="confirm-overlay" class="overlay hidden">
+  <div id="confirm-modal">
+    <div class="confirm-title">⚠ DELETE FILE?</div>
+    <div id="confirm-path" class="confirm-path"></div>
+    <div class="confirm-sub">this is a real file on disk. there is no undo.</div>
+    <div class="confirm-actions">
+      <button id="confirm-cancel" class="btn">[ CANCEL ]</button>
+      <button id="confirm-yes" class="btn btn-danger">[ YES, DELETE ]</button>
+    </div>
+  </div>
+</div>
+
+<script src="/static/js/app.js"></script>
+</body>
+</html>
