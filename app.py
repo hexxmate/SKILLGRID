@@ -323,13 +323,15 @@ def main():
     configure_root(args.path)
 
     n_skills = sum(1 for _ in iter_skill_files(ROOT))
-    print(r"""
+        print(r"""
    _____ __   _ ____  __ _____     _     __
   / ___// /__(_) / / / // ___/____(_)___/ /
   \__ \/ //_/ / / / / / \__ \/ ___/ / __  /
  ___/ / ,< / / / / / / ___/ / /  / / /_/ /
 /____/_/|_/_/_/ /_/_/ /____/_/  /_/\__,_/
 """)
+    print("  made by hexxmate")
+    print()
     print(f"  root:   {ROOT}")
     print(f"  skills: {n_skills} .md files found")
     print(f"  url:    http://{args.host}:{args.port}")
